@@ -24,7 +24,7 @@ module Frank
       def transfer!
         connection do |scp|
           old_name = ''
-          scp.upload! local_path, remote_path do |ch, name|
+          scp.upload! local_path, remote_path, :recursive => true do |ch, name|
             if old_name != name
               ok_message "Uploading #{name}", "    - "
             end
