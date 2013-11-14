@@ -30,7 +30,7 @@ module Frank
       message = ""
 
       protocol = Frank.publish.mode || :scp
-      unless [:ftp, :ftptls, :sftp, :scp].include?(protocol.to_sym)
+      unless [:ftp, :ftptls, :sftp, :scp, :shell_scp].include?(protocol.to_sym)
         message << "Frank.publish.mode = #{protocol} is not supported. Supported publish modes are 'ftp', 'ftptls', 'sftp' or 'scp' (default)\n"
         should_exit = true
       end

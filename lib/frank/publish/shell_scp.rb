@@ -1,10 +1,26 @@
+require 'frank/publish/base'
+
 module Frank
   module Publish
+    # This can be used to glob whole directories for transfer
+    # and put them in the correct directory.
+    # Interim solution for SCP publisher issues.
+    class SHELL_SCP < Base
 
-    #TODO
+      def initialize(options, &block)
+        super(options)
+        instance_eval(&block) if block_given?
+      end
 
-    class ShellSCP
-
+      def transfer!
+        SHELL_SCP.shell_copy( local_path,
+                              remote_path,
+                              { :port => port,
+                                :username => username,
+                                :password => password,
+                                :host => hostname
+                              })
+      end
 
       def self.shell_copy(local_dir, remote_dir, options)
 
